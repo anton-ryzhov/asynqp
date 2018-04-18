@@ -157,6 +157,7 @@ class ConnectionActor(routing.Actor):
             if isinstance(frame.payload, close_methods) or isinstance(frame, frames.PoisonPillFrame):
                 return super().handle(frame)
             else:
+                self.reader.ready()
                 return
         return super().handle(frame)
 
